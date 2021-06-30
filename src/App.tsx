@@ -13,7 +13,12 @@ export const App = () => {
     const newTodos = [...incompleteTodos, todoText];
     setIncompleteTodos(newTodos);
     setTodoText("");
-  }
+  };
+  const onClickDelete = (index: any) => {
+    const newTodos = [...incompleteTodos];
+    newTodos.splice(index, 1);
+    setIncompleteTodos(newTodos);
+  };
   return (
     // <div className="App">
       // <header className="App-header">
@@ -40,12 +45,12 @@ export const App = () => {
     <div className="incomplete-area">
         <p className="title">未完</p>
         <ul>
-          {incompleteTodos.map((todo) => {
+          {incompleteTodos.map((todo,index) => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
                 <button>Mission Complete</button>
-                <button>Delete</button>
+                <button onClick ={(index) => onClickDelete(index)}>Delete</button>
               </div>
             );
           })}
