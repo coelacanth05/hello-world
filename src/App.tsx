@@ -19,6 +19,15 @@ export const App = () => {
     newTodos.splice(index, 1);
     setIncompleteTodos(newTodos);
   };
+
+  const onClickComplete = (index: any) => {
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+
+    const newCompleteTodos = [...completeTodos, incompleteTodos[index]];
+    setIncompleteTodos(newIncompleteTodos);
+    setCompleteTodos(newCompleteTodos);
+  };
   return (
     // <div className="App">
       // <header className="App-header">
@@ -49,7 +58,7 @@ export const App = () => {
             return (
               <div key={todo} className="list-row">
                 <li>{todo}</li>
-                <button>Mission Complete</button>
+                <button onClick ={(index) => onClickComplete(index)}>Mission Complete</button>
                 <button onClick ={(index) => onClickDelete(index)}>Delete</button>
               </div>
             );
